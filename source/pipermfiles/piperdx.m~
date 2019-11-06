@@ -21,7 +21,7 @@ A{i}= tline;
   
    end
 fclose(fid);
-
+data = [];
 for j = 1:l
     p = append(parameters.piper.md,list{j});
     A{19} = p;
@@ -34,7 +34,7 @@ for j = 1:l
     end
     fclose(fid);
     run('testpipergridonly.m');
-    d = dx2mat(parameters.piper.DXFile);
+    d = dx2mat(parameters.piper.DxFile);
     dmatrix = d.densityMatrix;
     dvector = dmatrix(:);
     data = [data dvector];

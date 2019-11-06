@@ -2,7 +2,7 @@ function [parameters,data] = ComputeEigen(parameters,data);
 
 %m = size(data.protein,1)
 %r = data.densityMatrix(:,:,1);
-r = data
+r = data;
  m = size(r,1);
 k = parameters.GRFModel.numofeigenvalues;
 cx = parameters.GRFModel.cx;

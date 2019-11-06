@@ -13,7 +13,7 @@ Energies = 1;
 
 % Output size of cube
 tic;
-fprintf('Calculate size of Cube \n')
+fprintf('Running piper \n')
 t1 = toc;
 [Energies,nx,ny,nz] = calllib('libMatPiper','MatPiper',Energies,1,1,1, ...
                                 matfri, matlri, output, piperfile);             

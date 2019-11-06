@@ -13,7 +13,7 @@ piper.output = int16(0); % Flag false for do not output the data
 piper.Energies = 1;
 piper.piperfile = 'piper_trypsin';
 
-piper.DxFile = 'rec_grid.b2.l0.dx';
+piper.DxFile = './piper/orig_grids/rec_grid.b4.l0.dx';
 piper.md = '../../data/md_trypsin/';
 
 parameters.piper = piper;

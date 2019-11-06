@@ -16,7 +16,7 @@ atoms.0.0.6.prm.ms.3cap+0.5ace.Hr0rec
 rot70k.0.0.6.jm.prm
 -f
 coeffs.0.0.6.cs1.0.serverdemo_zero
-../../data/md_trypsin/prot_001_out_nmin.pdb
+../../data/md_trypsin/prot_100_out_nmin.pdb
 1ppe_nmin.pdb
 multirec_trypsin_good.pdb
 multilig.pdb

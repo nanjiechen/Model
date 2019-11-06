@@ -7,8 +7,8 @@ files = dir([d,'*.pdb']);
 %files =dir([parameters.piper.md,'/*.pdb']);
 
 list = {files.name};
-%l = length(list);
-l = 1; %For test
+l = length(list);
+%l = 1; %For test
 
 fid = fopen(parameters.piper.piperfile,'r');
 i = 1;
