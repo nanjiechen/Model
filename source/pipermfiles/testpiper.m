@@ -8,8 +8,8 @@ matfri = 0;
 matlri = 0;
 output = int16(0); % Flag false for do not output the data
 %piperfile = 'piper_argfile';
-piperfile = 'piper_trypsin';
-%piperfile = 'piper_trypsin.bak';
+%piperfile = 'piper_trypsin';
+piperfile = 'piper_trypsin.bak';
 Energies = 1;
 
 % Output size of cube

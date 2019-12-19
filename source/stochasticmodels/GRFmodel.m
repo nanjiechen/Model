@@ -5,7 +5,9 @@ function [parameters,data] = GRFmodel(methods,parameters,data);
 %r = data.protein;
 %r = parameters.densityMatrix;
 %r = data.densityMatrix(:,:,1);
-r = data;
+
+r = data.M; % dummy. Needs to be corrected.
+
 m = size(r,1);
 
 meanvector = sum(r)/m;

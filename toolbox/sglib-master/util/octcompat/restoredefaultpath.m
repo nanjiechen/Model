@@ -1,2 +1,0 @@
-function restoredefaultpath
-path(pathdef);

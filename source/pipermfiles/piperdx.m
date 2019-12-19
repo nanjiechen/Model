@@ -1,6 +1,7 @@
 function [parameters,data] = piperdx(methods,parameters);
 % run('paths.m');
 % List of pdb files
+
 d = '/projectnb/uqproj/StochasticDocking/Code/data/md_trypsin/';
 %files = dir(['/projectnb/uqproj/StochasticDocking/Code/data/md_trypsin/','*.pdb']);
 files = dir([d,'*.pdb']);
@@ -23,7 +24,8 @@ A{i}= tline;
 fclose(fid);
 data = [];
 for j = 1:l
-    p = append(parameters.piper.md,list{j});
+   % p = append(parameters.piper.md,list{j});
+   p = [parameters.piper.md, list{j}];
     A{19} = p;
 
    
@@ -33,7 +35,7 @@ for j = 1:l
         fprintf(fid, '%s\n', char(A{I}));
     end
     fclose(fid);
-    run('testpipergridonly.m');
+    run('testpiper.m');
     d = dx2mat(parameters.piper.DxFile);
     dmatrix = d.densityMatrix;
     dvector = dmatrix(:);

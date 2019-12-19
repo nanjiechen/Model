@@ -29,11 +29,21 @@ methods.ProteinStochasticModel = @GRFmodel;
 % Eigenmodels
 methods.EigenDecomposition = @ComputeEigen;
 
+%Create Sparse grids
+methods.sparseinit = @sparseinitialization;
+
+%Karhunen-Loeve expansion for receptor map.
+methods.RecModel = @RecMap;
+
 % Define parameters for GRF model
-parameters.GRFModel.numofeigenvalues = 3;
+parameters.GRFModel.numofeigenvalues = 2;
 
 % Load stochastic realizations
 [parameters, data] = methods.loadrealizations(methods,parameters);
 
 % Create stochastic protein model
-[parameters, data] = methods.ProteinStochasticModel(methods,parameters,data);
+[parameters,data] = methods.ProteinStochasticModel(methods,parameters,data);
+%Get the approximate receptor map by using Karhunen-Loeve expansion
+[parameters] = RecMap(methods,parameters);
+
+
