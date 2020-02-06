@@ -1,7 +1,7 @@
 function [parameters,data] = piperdx(methods,parameters);
-% run('paths.m');
-% List of pdb files
 
+% List of pdb files
+data = [];
 d = '/projectnb/uqproj/StochasticDocking/Code/data/md_trypsin/';
 %files = dir(['/projectnb/uqproj/StochasticDocking/Code/data/md_trypsin/','*.pdb']);
 files = dir([d,'*.pdb']);
@@ -9,7 +9,13 @@ files = dir([d,'*.pdb']);
 
 list = {files.name};
 l = length(list);
-%l = 1; %For test
+%l = 2; %For test
+d = '/projectnb/uqproj/StochasticDocking/Code/source/piper/orig_grids';
+files = dir(fullfile(d,'rec_grid*'));
+%List of rec maps
+ls = {files.name};
+n = length(ls); %Number of rec_grid maps
+parameters.piper.NumofRecMap = n;
 
 fid = fopen(parameters.piper.piperfile,'r');
 i = 1;
@@ -22,7 +28,8 @@ A{i}= tline;
   
    end
 fclose(fid);
-data = [];
+
+
 for j = 1:l
    % p = append(parameters.piper.md,list{j});
    p = [parameters.piper.md, list{j}];
@@ -30,25 +37,28 @@ for j = 1:l
 
    
     fid = fopen(parameters.piper.piperfile, 'r+');
-    %for I = 1:length(A)
-    for I = 1:23
-        fprintf(fid, '%s\n', char(A{I}));
+    
+    for I = 1:22
+      
+        fprintf(fid, '%s\n', A{I});
     end
     fclose(fid);
-    run('testpiper.m');
-    d = dx2mat(parameters.piper.DxFile);
+   run('piperdxwrite.m');
+   RecData = [];
+   for i = 1:n
+        s = ['./piper/orig_grids/' ls{i}];
+        parameters.piper.DxFile = s;
+        d = dx2mat(parameters.piper.DxFile);
     dmatrix = d.densityMatrix;
-    dvector = dmatrix(:);
-    data = [data dvector];
+    dvector = dmatrix(:); 
+    RecData = [RecData;dvector];
+    
+    end
+    data = [data RecData];
+    data = single(data);
 end
 
-%data = dx2mat(parameters.piper.DxFile);
+
 
 
 end
-
-
-
-% for each run piper
-
-% read the dx file

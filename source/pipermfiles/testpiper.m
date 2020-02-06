@@ -1,4 +1,3 @@
-
 % Library call to first determine size of the results
 cd piper
 
@@ -9,7 +8,7 @@ matlri = 0;
 output = int16(0); % Flag false for do not output the data
 %piperfile = 'piper_argfile';
 %piperfile = 'piper_trypsin';
-piperfile = 'piper_trypsin.bak';
+piperfile = 'piper_trypsin';
 Energies = 1;
 
 % Output size of cube

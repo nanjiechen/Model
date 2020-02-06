@@ -29,21 +29,49 @@ methods.ProteinStochasticModel = @GRFmodel;
 % Eigenmodels
 methods.EigenDecomposition = @ComputeEigen;
 
-%Create Sparse grids
+% Create Sparse grids
 methods.sparseinit = @sparseinitialization;
 
-%Karhunen-Loeve expansion for receptor map.
+% Karhunen-Loeve expansion for receptor map.
 methods.RecModel = @RecMap;
+
+% Run Piper again, get engergies.
+methods.Energies = @CollectEnergies;
+methods.ComputeStats = @ComputeStats;
 
 % Define parameters for GRF model
 parameters.GRFModel.numofeigenvalues = 2;
+parameters.flags.saveenergies = true;
+parameters.flags.loadenergies = true;
 
-% Load stochastic realizations
+
+
+% Load stochastic realizations using piper
+fprintf('Load realizations --------------------------------------- \n');
+fprintf('\n');
 [parameters, data] = methods.loadrealizations(methods,parameters);
+
+fprintf('Create stochastic protein model ------------------------- \n');
+fprintf('\n');
 
 % Create stochastic protein model
 [parameters,data] = methods.ProteinStochasticModel(methods,parameters,data);
-%Get the approximate receptor map by using Karhunen-Loeve expansion
-[parameters] = RecMap(methods,parameters);
+
+fprintf('Stochastic model ---------------------------------------- \n');
+fprintf('\n');
+% Get the approximate receptor map by using Karhunen-Loeve expansion
+[parameters] = methods.RecModel(methods,parameters);
 
 
+fprintf('Load Energies ------------------------------------------- \n');
+fprintf('\n');
+% Obtain Engernies
+[parameters,results] = methods.Energies(parameters);
+
+% Compute Statistics
+fprintf('Compute statistics -------------------------------------- \n');
+fprintf('\n');
+[parameters,results] = methods.ComputeStats(parameters,results);
+
+% Unload piper library
+unloadlibrary('libMatPiper')
