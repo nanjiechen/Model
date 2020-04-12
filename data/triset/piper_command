@@ -1,1 +1,0 @@
-~/src/piper1/build/piper  -v -c1.0 -k4 --msur_k=1.0 --maskr=1.0 -T FFTW_EXHAUSTIVE -R 70000 -t 1 -p ~/prms/atoms.0.0.6.prm.ms.3cap+0.5ace.Hr0rec -r ~/prms/rot70k.0.0.6.jm.prm -f coeffs.0.0.6.cs1.0.serverdemo_zero 1aq7_a_1ppe_e_cmin_nmin.pdb 1ppe_nmin.pdb multirec.pdb multilig.pdb 

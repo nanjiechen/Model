@@ -1,9 +1,0 @@
-#!/bin/bash -l
-
-#$ -l h_rt=400:00:00 
-#$ -P uqproj
-#$ -pe omp 16
-#$ -N Piper
-
-
-matlab -nodisplay -r "paths; SDtests; exit"
