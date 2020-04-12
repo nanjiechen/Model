@@ -1,4 +1,4 @@
-% Gaussian Random Field model from data
+ % Gaussian Random Field model from data
 
 function [parameters,data] = GRFmodel(methods,parameters,data);
 

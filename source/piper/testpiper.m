@@ -1,5 +1,4 @@
 
-
 %%
 %% Put the correct size of output
 
@@ -7,13 +6,13 @@ cd piper
 fprintf('Run piper with correct output energy vector \n')
 
 output = int16(1); % Flag true for output of data
-matfri =    0;
+matfri =    5445;
 
 nx = parameters.piper.nx;
 ny = parameters.piper.ny;
 nz = parameters.piper.nz;
 piperfile = parameters.piper.piperfile;
-matlri = parameters.piper.numrotations;
+matlri = matfri + parameters.piper.numrotations;
 
 Energies = zeros(nx * ny * nz * (matlri - matfri + 1), 1,'single');
 
@@ -26,3 +25,4 @@ fprintf('\n')
 %unloadlibrary('libMatPiper')
 
 cd ..
+

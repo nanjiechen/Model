@@ -39,7 +39,6 @@ for j = 1:l
     fid = fopen(parameters.piper.piperfile, 'r+');
     
     for I = 1:22
-      
         fprintf(fid, '%s\n', A{I});
     end
     fclose(fid);

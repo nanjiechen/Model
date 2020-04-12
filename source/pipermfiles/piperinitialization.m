@@ -1,5 +1,5 @@
-function parameters = piperinitialization(parameters)
 
+function parameters = piperinitialization(parameters)
 % Load piper dynamic shared library
 % loadlibrary('./piper/libMatPiper')
 
@@ -46,8 +46,19 @@ piper.ny = ny;
 piper.nz = nz;
 piper.numrotations = 10;
 
+% Total memory per single rotation
+piper.memperrot = nx * ny * nz * 4;
+piper.memory = parameters.piper.memory;
+
+% Save piper structure in parameters
 parameters.piper = piper;
 
+%%
+
 cd ..
+
+
+
+
 
 end
