@@ -1,6 +1,11 @@
 function [parameters,results] = EnergiesBlocks(parameters,results)
-%n = ceil(69999/parameters.piper.rotationwidth);
+n = ceil(69999/parameters.piper.rotationwidth);
 matfri = 0;
+%filename = append('energiesMat','_','dim',num2str(parameters.GRFModel.numofeigenvalues),'.mat');
+%mf = matfile(filename, 'Writable', true);
+%[nrows,ncols] = size(mf,'EnergiesMat');
+%u = nrows/parameters.piper.nx/parameters.piper.ny/parameters.piper.nz/parameters.piper.rotationwidth;
+%matfri = parameters.piper.rotationwidth * u;
 %k = 1000;
 Emin = [];
 EVar = [];
@@ -13,8 +18,8 @@ Minsrotation = [];
  
 [parameters,results] = CollectEnergies(matfri,parameters,results);
 
- eg = results.EnergiesMat(results.NewIndex);
- allMin = min(results.EnergiesMat(results.NewIndex), [],'all');
+ eg = results.EnergiesMat;
+ allMin = min(results.EnergiesMat, [],'all');
   results.EnergyMin = allMin;
  if results.EnergyMin < 1
     results.ScaledEnergies = eg + ( 1 - results.EnergyMin);
@@ -32,7 +37,8 @@ Minsrotation = [];
 
 
 %Ordered back to the unsorted original order.
-[results.UnsortedIndex, Index_order] = sort(results.NewIndex);
+[tf, Index_order]= ismember(results.OrigRotation,results.SortedRotation);
+% [results.OrigRotation, Index_order] = sort(results.SortedRotation);
 ReorderedMat = results.TransMat(Index_order,:);
 results.ReorderedMat = ReorderedMat;
 Reorderedfname = append('ReorderedMat','_','dim',num2str(parameters.GRFModel.numofeigenvalues));
