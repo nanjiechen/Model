@@ -26,7 +26,7 @@ meansquare = Qmeansquare / ( (2 * width)^parameters.GRFModel.numofeigenvalues);
     
 results.var = meansquare - results.mean.^2;
 
-A = results.SortedRotation;
+A = results.SortedMat;
 
 A(:,12) = results.var;
 A(:,13) = results.mean;
