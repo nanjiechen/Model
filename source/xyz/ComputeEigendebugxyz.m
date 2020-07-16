@@ -1,5 +1,5 @@
 %Construct eigenfunction by using eigenvectors
-function [parameters,data] = ComputeEigenxyz(parameters,data);
+function [parameters,data] = ComputeEigendebugxyz(parameters,data);
 
 % Compute eigenvectors and eigenvalues of covariance matrix
 % m = size(data.protein,1)
@@ -18,9 +18,9 @@ cz = parameters.GRFModel.cz;
 M = size(cx,2);
 % My = size(cy,2);
 % Mz = size(cz,2);
- Covx = (cx' * cx) / M; %Covariance Matrix
- Covy = (cy' * cy) / M;
- Covz = (cz' * cz) / M;
+Covx = (cx' * cx) / M; %Covariance Matrix
+Covy = (cy' * cy) / M;
+Covz = (cz' * cz) / M;
 
 % Run SVD to compute eigenvalues and eigenvectors
 % [u,s,v] = svds(@(y,tflag) computeevec(y,tflag,cx), [m m], k);
@@ -41,18 +41,25 @@ parameters.GRFModel.covariance = C;
 parameters.GRFModel.eigenvalues = s;
 parameters.GRFModel.eigenvectors = u;
 
-xefun = parameters.GRFModel.eigenvectors' * cx' ./sqrt(s)/sqrt(M);
+
+xefun = parameters.GRFModel.eigenvectors' * cx' ./s /M;
 % xefun = cx * u;
 % xefun = parameters.GRFModel.eigenvectors' * cx';
 parameters.GRFModel.xeigenfunction = xefun;
 
-yefun = parameters.GRFModel.eigenvectors' * cy' ./sqrt(s)/sqrt(M) ;
-% yefun = parameters.GRFModel.eigenvectors' * cy' ./s;
+yefun = parameters.GRFModel.eigenvectors' * cy' ./s /M;
 % yefun = cy * u;
+% yefun = parameters.GRFModel.eigenvectors' * cy';
 parameters.GRFModel.yeigenfunction = yefun;
 
-zefun = parameters.GRFModel.eigenvectors' * cz' ./sqrt(s)/sqrt(M) ;
-% zefun = parameters.GRFModel.eigenvectors' * cz';
+zefun = parameters.GRFModel.eigenvectors' * cz' ./s /M;
 % zefun = cz * u;
+% zefun = parameters.GRFModel.eigenvectors' * cz';
 parameters.GRFModel.zeigenfunction = zefun;
+
+
+
+
+
+
 end

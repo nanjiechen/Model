@@ -3,8 +3,8 @@ function [parameters] = RecMapxyz(methods,parameters)
     parameters = methods.sparseinit(parameters);
     knots = parameters.stochasticmodel.Sr.knots;
     evals = parameters.GRFModel.eigenvalues;
-    evals = sqrt(evals);
-    
+%     evals = sqrt(evals);
+    evals = sqrt(evals*parameters.GRFModel.KLRescale);
     xefunc = parameters.GRFModel.xeigenfunction;
     yefunc = parameters.GRFModel.yeigenfunction;
     zefunc = parameters.GRFModel.zeigenfunction;

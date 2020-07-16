@@ -3,6 +3,7 @@
 function [parameters] = writepdb(parameters)
 l = parameters.stochasticmodel.numofgrids;
 d = '/projectnb/uqproj/StochasticDocking/Code/data/md_trypsin/';
+d2 = '/projectnb/uqproj/StochasticDocking/Code/data/PDBApprox/'; 
 % PDBStruct = pdbread('prot_001_out_nmin.pdb');
 fid = fopen('prot_001_out_nmin.pdb','r');
 C = textscan(fid,'%s %s %s %s %s %s %s %s %s %s %s');  
@@ -34,7 +35,7 @@ for i = 1 : l
 input.X = x(:,i);
 input.Y = y(:,i);
 input.Z = z(:,i);
-File = append(d,'prot_',num2str(i.','%03d'),'_approximation_nmin.pdb');
+File = append(d2,'prot_',num2str(i.','%04d'),'_approximation_nmin.pdb');
 parameters.piper.approxPDB = File;
 input.outfile = File;
 mat2pdb(input);
