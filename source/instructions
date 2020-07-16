@@ -1,0 +1,1000 @@
+   81  xterm &
+   82  xterm -rv &
+   83  ls -l
+   84  cd
+   85  l s-l
+   86  ls -l
+   87  cd Projects/MLKriging/Code/source/
+   88  ls -l
+   89  matlab &
+   90  cd ..
+   91  ls -l
+   92  cd StochasticPower/Code/source/
+   93  matlab &
+   94  pwd
+   95  module load dropbox
+   96  dropbox
+   97  ls -l
+   98  pwd
+   99  cd ..
+  100  ls -l
+  101  cd MLKriging/
+  102  cd Code/source/
+  103  ls -l
+  104  qrsh -Puqproj -pe 4
+  105  cat job_kriging.qsub 
+  106  qrsh -Pprojuq -pe omp 4
+  107  qrsh -Puqproj -pe omp 4
+  108  ls -l *.qsub
+  109  ls -l
+  110  qrsh -Puqproj -pe omp 4
+  111  qrsh -P uqproj -pe omp 4
+  112  xterm -rv &
+  113  qrsh -P uqproj -pe omp 4
+  114  matlab &
+  115  ls -l
+  116  cd
+  117  ls -l
+  118  pwd
+  119  exit
+  120  top
+  121  ls -l
+  122  pwd
+  123  mv Code.zip CodeBack.zip
+  124  ls -l
+  125  pwd
+  126  exit
+  127  vncstart
+  128  exit
+  129  ls -l
+  130  xterm -rv &
+  131  top
+  132  exit
+  133  ls -l
+  134  cd Projects/MLKriging/Code/
+  135  ls -l
+  136  cd ..
+  137  ls -l
+  138  cd ..
+  139  ls -l
+  140  cd StochasticDocking/
+  141  ls -l
+  142  cd Temp/
+  143  ls -l
+  144  cd toolbox/
+  145  ls -l
+  146  cd piper1/
+  147  l s-l
+  148  ls -l
+  149  cd build/
+  150  ls -l
+  151  cd ..
+  152  ls -l
+  153  cd ..
+  154  ls -l
+  155  cd piper1/
+  156  ls -l
+  157  cd src
+  158  ls -l
+  159  emacs -rv mun.c &
+  160  cp mun.c mun.bak.c
+  161  ls -l *.c
+  162  emacs mun.c
+  163  vi mun.c
+  164  ls -l
+  165  cd ..
+  166  ls -l
+  167  cd build/
+  168  ls -l
+  169  pwd
+  170  rm *.*
+  171  rm -f *.*
+  172  ls -l
+  173  pwd
+  174  rm -f *
+  175  rm -r -f *
+  176  ls -l
+  177  cd ..
+  178  ls -l
+  179  cmake ..
+  180  pwd
+  181  emacs CMakeLists.txt
+  182  ls -l
+  183  cmake ..
+  184  ls -l
+  185  cmake 
+  186  cmake ..
+  187  cmake CMakeLists.txt
+  188  cd build/
+  189  ls -l
+  190  cd ..
+  191  ls -l
+  192  cmake CMakeLists.txt ./build/
+  193  ls -l
+  194  rm CMakeCache.txt 
+  195  pwd
+  196  rm cmake_install.cmake 
+  197  rm Makefile 
+  198  ls -l
+  199  rm -r CMakeFiles/
+  200  rm -r -f CMakeFiles/
+  201  ls -l
+  202  cd build/
+  203  ls -l
+  204  cmake ..
+  205  ls -l
+  206  make
+  207  ls -l
+  208  cd ..
+  209  ls -l
+  210  cp createlibraries-gnu.sh ./build/
+  211  ls -l
+  212  cd build/
+  213  ls -l
+  214  cp libmun.a ~/lib/
+  215  ls -l
+  216  cat createlibraries-gnu.sh 
+  217  createlibraries-gnu.sh 
+  218  ls -l
+  219  cp libMatPiper.so ../../../source/piper/
+  220  cd ..
+  221  pushd .
+  222  cd ..
+  223  cd source/
+  224  ls -l
+  225  cd piper/
+  226  ls -l *.so
+  227  cd ..
+  228  matlab
+  229  ls -l
+  230  mkdir orig_grids
+  231  ls -l
+  232  cd piper/
+  233  ls -l
+  234  emacs piper_argfile 
+  235  cd ..
+  236  ls -l
+  237  matlab
+  238  ls -l
+  239  cd piper/
+  240  ls -l
+  241  cp testpiper.m testpipergridonly.m 
+  242  emacs testpipergridonly.m 
+  243  cd ..
+  244  matlab
+  245  ls -l
+  246  cd  orig_grids/
+  247  ls -l
+  248  cd ..
+  249  ls -l
+  250  cd piper/
+  251  ls -l
+  252  cat piper_argfile
+  253  cd ..
+  254  popd
+  255  ls -l
+  256  cd piper1/
+  257  ls -l
+  258  cd build/
+  259  ls -l
+  260  pushd .
+  261  cd ..
+  262  ls -l
+  263  cd ..
+  264  ls -l
+  265  cd data
+  266  ls -l
+  267  cd triset/
+  268  ls -l
+  269  pwd
+  270  popd
+  271  cp piper_shared /usr2/faculty/jcandas/Projects/StochasticDocking/Temp/data/triset
+  272  pushd .
+  273  cd /usr2/faculty/jcandas/Projects/StochasticDocking/Temp/data/triset
+  274  ls -l
+  275  emacs piper_argfile 
+  276  mkdir orig_grids
+  277  ls -l
+  278  emacs  piper_argfile
+  279  piper_shared piper_argfile
+  280  ls -l
+  281  popd
+  282  ls -l
+  283  cat createlibraries-gnu.sh 
+  284  cd ..
+  285  cd src
+  286  ls -l
+  287  cat piper_shared.c 
+  288  ls -l
+  289  cat piper.c
+  290  emacs piper.c
+  291  ls -l
+  292  cd ..
+  293  ls -l
+  294  emacs CMakeLists.txt
+  295  ls -l
+  296  cd build/
+  297  ls -l
+  298  rm -r -f *
+  299  ls -l
+  300  cmake ..
+  301  ls -l
+  302  make
+  303  ls-l
+  304  ls -l
+  305  ./piper
+  306  pwd
+  307  cp piper ../../../data/triset/
+  308  pushd .
+  309  cd ../../../data/triset/
+  310  ls -l
+  311  ./piper piper_argfile
+  312  ls -l
+  313  cd orig_grids/
+  314  ls -l
+  315  popd
+  316  ls -l
+  317  cd ..
+  318  cp createlibraries-gnu.sh ./build/
+  319  ls -l
+  320  cd build/
+  321  ls -l
+  322  cp libmun.a ~/lib/
+  323  ./createlibraries-gnu.sh 
+  324  cat createlibraries-gnu.sh 
+  325  cd ..
+  326  ls -l
+  327  cd src
+  328  ls -l
+  329  emacs MatPiper.c
+  330  cd ..
+  331  ls -l
+  332  cd build/
+  333  ls -l
+  334  cp libMatPiper.so ../../../source/piper/
+  335  pwd
+  336  pushd .
+  337  cd libMatPiper.so ../../../source/piper/
+  338  cd ../../../source/piper/
+  339  pwd
+  340  ls -l 
+  341  cat piper_argfile
+  342  cd ..
+  343  ls -l
+  344  cd piper
+  345  ls -l
+  346  mkdir orig_grids
+  347  ls -l
+  348  cd ..
+  349  ls -l
+  350  matlab
+  351  ls -l
+  352  cd orig_grids/
+  353  ls -l
+  354  cd ..
+  355  cd piper/
+  356  ls -l
+  357  cat orig_grids/
+  358  cd orig_grids/
+  359  ls -l
+  360  emacs rec_grid.b0.l0.dx 
+  361  pymol
+  362  module pymol
+  363  module load pymol
+  364  pymol rec_grid.b0.l0.dx 
+  365  module load pymol/2.2.0
+  366  pymol rec_grid.b0.l0.dx 
+  367  module load pymol/2.2.0
+  368  pymol
+  369  exit
+  370  top
+  371  vncstart
+  372  exit
+  373  ssh nanjchen@scc2.bu.edu
+  374  top
+  375  exit
+  376  vncstart
+  377  exit
+  378  top
+  379  ls -l
+  380  cd Projects/StochasticDocking/Temp/
+  381  ls -l
+  382  cd source/
+  383  ls -l
+  384  cd piper
+  385  ls -l
+  386  cd orig_grids/
+  387  ls -l
+  388  emacs
+  389  ls -l
+  390  emacs rec_grid.b0.l0.dx 
+  391  pushd .
+  392  cd
+  393  ls -l
+  394  exit
+  395  cd Projects/
+  396  ls -l
+  397  cd StochasticDocking/
+  398  ls -l
+  399  cd Code/
+  400  ls -l
+  401  cd source/
+  402  ls -l
+  403  cd piper
+  404  ls -l
+  405  cd ..
+  406  ls -l
+  407  cd ..
+  408  ls -l
+  409  cd toolbox/
+  410  ls -l
+  411  cd ..
+  412  ls -l
+  413  cd ..
+  414  ls -l
+  415  cd TestCode/
+  416  ls -l
+  417  cd ..
+  418  ls -l
+  419  cp -r Code/ Temp/
+  420  ls -l
+  421  cd Temp
+  422  ls -l
+  423  cd source/
+  424  ls -l
+  425  matlab &
+  426  ls -l
+  427  cd piper/
+  428  ls -l
+  429  ls -l *.so
+  430  ls -l
+  431  xterm &
+  432  xterm -rv &
+  433  echo $LD_LIBRARY_PATH
+  434  ls -l
+  435  cd ..
+  436  ls -l
+  437  cd ..
+  438  ls -l
+  439  cd toolbox/
+  440  ls -l
+  441  cd piper1
+  442  ls -l
+  443  cat ./createlibraries-gnu.sh 
+  444  ls -l
+  445  cd ..
+  446  ls -l
+  447  cd libgrid2/
+  448  ls -l
+  449  cd build/
+  450  l s-l
+  451  ls -l
+  452  cd ..
+  453  ls -l
+  454  cd ..
+  455  ls -l
+  456  cd piper1/
+  457  ls -l
+  458  ./createlibraries-gnu.sh 
+  459  ls -l
+  460  emacs -rv createlibraries-gnu.sh &
+  461  pwd
+  462  ./createlibraries-gnu.sh
+  463  cd ..
+  464  ls -l
+  465  cd .
+  466  cd ..
+  467  l s-l
+  468  ls -l
+  469  cd ..
+  470  ls -l
+  471  cd Code/
+  472  ls -l
+  473  cd toolbox/
+  474  ls -l
+  475  cd piper1/
+  476  ls -l
+  477  ./createlibraries-gnu.sh 
+  478  cd ..
+  479  ls -l
+  480  cd ..
+  481  ls -l
+  482  cd Temp/toolbox/
+  483  ls -l
+  484  cd piper1/
+  485  ls -l
+  486  ls -l *.so
+  487  ./createlibraries-gnu.sh
+  488  ls -l
+  489  cd build/
+  490  ls -l
+  491  cd ..
+  492  ls -l
+  493  emacs -rv createlibraries-gnu.sh &
+  494  cp createlibraries-gnu.sh ./build/
+  495  ls -l
+  496  cd build/
+  497  ls -l
+  498  ls -l *.so
+  499  rm *.so
+  500  ls -l
+  501  ./createlibraries-gnu.sh 
+  502  ls -l
+  503  emacs -rv createlibraries-gnu.sh &
+  504  ./createlibraries-gnu.sh 
+  505  ls -l
+  506  cp libmun.a ~/lib/
+  507  ls -l
+  508  ./createlibraries-gnu.sh
+  509  ls -l *.so
+  510  ./createlibraries-gnu.sh
+  511  ls -l
+  512  ./piper_shared 
+  513  ls -l
+  514  cp *.so ../../../source/piper/
+  515  ls -l
+  516  cd ..
+  517  ls -l
+  518  cd src
+  519  ls -l
+  520  emacs -rv piper_shared.c &
+  521  emacs -rv MatPiper.c &
+  522  ls -l
+  523  cd ..
+  524  ls -l
+  525  cd ..
+  526  ls -l
+  527  cd libgrid2/
+  528  ls -l
+  529  emacs -rv CMakeLists.txt &
+  530  ls -l
+  531  cd cmake/
+  532  ls -l
+  533  cd ..
+  534  ls -l
+  535  cd build/
+  536  ls -l
+  537  cd ..
+  538  ls -l
+  539  cd ..
+  540  ls -l
+  541  cd piper1/
+  542  ls -l
+  543  emacs -rv CMakeLists.txt &
+  544  cd build/
+  545  ls -l
+  546  emacs -rv Makefile &
+  547  cd ..
+  548  ls -l
+  549  emacs -rv CMakeLists.txt &
+  550  ls -l
+  551  cd build/
+  552  ls -l
+  553  cmake
+  554  ls -l
+  555  cd ..
+  556  ls -l
+  557  cd build/
+  558  ls -l
+  559  cd ..
+  560  ls -l
+  561  cmake
+  562  ls -l
+  563  cat scripts/
+  564  ls -l
+  565  cd scripts/
+  566  ls -l
+  567  cat piper-completion.bash 
+  568  ls -l
+  569  cd ..
+  570  ls -l
+  571  cat examples/
+  572  ls -l
+  573  cd examples/
+  574  ls -l
+  575  cat restraints.example 
+  576  cd ..
+  577  ls -l
+  578  cd build/
+  579  ls -l
+  580  cat CTestTestfile.cmake 
+  581  ls -l
+  582  cmake
+  583  cat CMakeFiles/
+  584  cd CMakeFiles/
+  585  ls -
+  586  ls -l
+  587  pwd
+  588  cat mun.dir
+  589  cd mun.dir
+  590  ls -l
+  591  cd src
+  592  l s-l
+  593  ls -l
+  594  cd ..
+  595  ls -l
+  596  cd ..
+  597  ls -l
+  598  cat cmake_install.cmake 
+  599  ls -l
+  600  cmake --build
+  601  cmake -build
+  602  ls -l
+  603  cd ..
+  604  ls -l
+  605  cmake -build
+  606  pwd
+  607  ls -l
+  608  cd build/
+  609  ls -l
+  610  cat createlibraries-gnu.sh 
+  611  ls -l
+  612  cd ..
+  613  ls -l
+  614  l s-l
+  615  ls -l
+  616  pwd
+  617  cd build/
+  618  ls -l
+  619  cd ..
+  620  ls -l
+  621  cat createlibraries-gnu.sh
+  622  emacs -rv createlibraries-gnu.sh &
+  623  ls -l
+  624  cd ..
+  625  ls -l
+  626  cd ..
+  627  ls -l
+  628  cd source/
+  629  ls -l
+  630  matlab &
+  631  ls -l
+  632  cd orig_grids/
+  633  ls -l
+  634  cd ..
+  635  rm -r orig_grids/
+  636  ls -l
+  637  cd piper
+  638  l s-l
+  639  ls -l
+  640  cd orig_grids/
+  641  ls -l
+  642  emacs -rv cor_grid.b0.dx &
+  643  ls -l
+  644  emacs -rv rec_grid.b0.l0.dx &
+  645  cd ..
+  646  ls -l
+  647  cd ..
+  648  ls -l
+  649  scp -r Temp/ nanjchen@scc2.bu.edu:
+  650  ls -l
+  651  cd Temp/
+  652  ls -l
+  653  cd toolbox/piper1/
+  654  ls -l
+  655  cd build/
+  656  ls -l
+  657  ./createlibraries-gnu.sh 
+  658  ls -l
+  659  emacs -rv createlibraries-gnu.sh &
+  660  cd ..
+  661  cd include/
+  662  ls -l
+  663  cd ..
+  664  ls -l
+  665  pushd .
+  666  ls -l
+  667  cd
+  668  ls -l
+  669  cat .bashrc
+  670  emacs -rv .bashrc &
+  671  ls -l
+  672  cd lib/
+  673  cd .
+  674  cd ..
+  675  scp -r lib/ nanjchen@scc2.bu.edu:
+  676  ls -l
+  677  cd
+  678  ls -l
+  679  cat .bashrc
+  680  cd lib
+  681  ls -l
+  682  cd
+  683  cd Projects/StochasticDocking/Temp/source/piper/
+  684  ls -l
+  685  cat piper_arg
+  686  cat piper_argfile 
+  687  cat libMatPiper.h
+  688  ls -l
+  689  cd ..
+  690  ls -l
+  691  pushd .
+  692  ls -l
+  693  cd
+  694  cd lib/
+  695  ls -l
+  696  top
+  697  vncpasswd
+  698  top
+  699  vncstart
+  700  vncserver -kill :14
+  701  vncstart
+  702  exit
+  703  xterm -rv &
+  704  cd  
+  705  cd 
+  706  xterm -rv &
+  707  cd Projects/StochasticDocking/Code/source/
+  708  ls -l
+  709  matlab &
+  710  ls -l
+  711  popd
+  712  ls -l
+  713  cd
+  714  ls -l
+  715  chmod g+r Projects/
+  716  ls -l Projects/j
+  717  ls -l
+  718  cd Projects/
+  719  ls -l
+  720  cd StochasticDocking/
+  721  ls -l
+  722  cd Code/
+  723  l s-l
+  724  ls -l
+  725  pwd
+  726  cd ..
+  727  ls -l
+  728  cd ..
+  729  ls -l
+  730  cd ..
+  731  ls -l
+  732  ls -l jcandas
+  733  ls -l
+  734  chmod g+r jcandas/
+  735  chmod o+r jcandas/
+  736  chmod o-r jcandas/
+  737  pushd .
+  738  cd
+  739  pwd
+  740  cd /usr3/graduate/nanjchen/
+  741  cd
+  742  pwd
+  743  ls -l
+  744  module load github
+  745  module load git
+  746  ls -l
+  747  cd /projectnb
+  748  ls -l
+  749  cd uqproj
+  750  ls -l
+  751  pushd .
+  752  cd
+  753  cd Projects/
+  754  ls -l
+  755  cp -r StochasticDocking/ /projectnb/uqproj/
+  756  top
+  757  ps
+  758  top
+  759  ls -l
+  760  cd Projects/
+  761  ls -l
+  762  cd StochasticDocking/
+  763  ls -l
+  764  cd Code/
+  765  ls -
+  766  ls -l
+  767  cd source/
+  768  ls -l
+  769  cd pcemodels
+  770  ls -l
+  771  cd ..
+  772  ls -l
+  773  cd pdbrealizations/
+  774  ls -l
+  775  cat loadpdbrealizations.m 
+  776  cd ..
+  777  ls -l
+  778  matlab
+  779  top
+  780  ls -l
+  781  cd ..
+  782  ls -l
+  783  pushd .
+  784  cd
+  785  ls -l
+  786  top
+  787  ls -l
+  788  top
+  789  exit
+  790  cd /projectnb/uqproj/
+  791  ls -l
+  792  cd StochasticDocking/
+  793  ls -l
+  794  cd ..
+  795  ls -l
+  796  chmod g+r -r StochasticDocking/
+  797  chmod g+r StochasticDocking/
+  798  ls -l
+  799  chmod 777 StochasticDocking/
+  800  ls -l
+  801  cd ..
+  802  ls -l
+  803  cd uqproj/
+  804  ls -l
+  805  chmod o-wx StochasticDocking/
+  806  ls -l
+  807  chmod o-r StochasticDocking/
+  808  ls -l
+  809  chmod -R g+r StochasticDocking/
+  810  chmod -R 777 StochasticDocking/
+  811  chmod -R o-rwx StochasticDocking/
+  812  ls -l
+  813  cd StochasticDocking/
+  814  ls -l
+  815  rm -r Code/
+  816  rm -r -f  Code/
+  817  ls -l
+  818  rm -r -f  Temp/
+  819  cd TestCode/
+  820  ls -l
+  821  cd ..
+  822  ls -l
+  823  cd Code/
+  824  ls -l
+  825  cd Code
+  826  ls -l
+  827  cd toolbox/
+  828  ls -l
+  829  cd piper1/
+  830  ls -l
+  831  cat createlibraries-gnu.sh
+  832  cd ..
+  833  ls -l
+  834  cd ..
+  835  ls -l
+  836  cd data
+  837  ls -l
+  838  cd ..
+  839  ls -l
+  840  cd ..
+  841  ls -l
+  842  cd Data
+  843  ls -l
+  844  cd ..
+  845  ls -l
+  846  cd Code/
+  847  ls -l
+  848  cd data
+  849  ls -l
+  850  mkdir md_out
+  851  ls -l
+  852  pushd .
+  853  cd
+  854  ls -l
+  855  cp md_100.tar.gz /projectnb/uqproj/
+  856  cd /projectnb/uqproj/
+  857  ls -l
+  858  mv md_100.tar.gz ./StochasticDocking/Code/data
+  859  cd StochasticDocking/
+  860  ls -l
+  861  cd Code/
+  862  ls -l
+  863  cd data
+  864  ls -l
+  865  mv md_100.tar.gz md_trypsin
+  866  ls -l
+  867  rm -r md_out/
+  868  ls -l
+  869  mv md_trypsin md_100.tar.gz
+  870  ls -l
+  871  mkdir md_trypsin
+  872  ls -l
+  873  mv md_100.tar.gz ./md_trypsin/
+  874  ls -l
+  875  cd md_trypsin/
+  876  ls -l
+  877  gunzip md_100.tar.gz 
+  878  ls -l
+  879  tar -xvf md_100.tar 
+  880  ls =-l
+  881  ls -l
+  882  cd ..
+  883  ls -l
+  884  chmod -R 777 md_trypsin/
+  885  chmod -R o-rwx md_trypsin/
+  886  ls -l
+  887  cd ..
+  888  ls -l
+  889  cd ..
+  890  ls -l
+  891  cd ..
+  892  ls -l
+  893  emacs peruq
+  894  ls -l
+  895  rm peruq~
+  896  ls -l
+  897  chmod u+w peruq 
+  898  ls -l
+  899  ./peruq
+  900  chmod u+x peruq 
+  901  ls -l
+  902  ./peruq
+  903  ls -l
+  904  chmod -R 777 StochasticDocking/
+  905  ls -l
+  906  cd StochasticDocking/
+  907  ls -l
+  908  cd
+  909  ls -l
+  910  cd /projectnb/uqproj/
+  911  ls -l
+  912  chmod -R 777 peruq
+  913  chmod -R o-wrx peruq
+  914  ls -l
+  915  ./peruq 
+  916  ls -l
+  917  emas peruq 
+  918  emacs peruq 
+  919  ls -l
+  920  cat peruq
+  921  ls -l
+  922  ./peruq
+  923  ls -l
+  924  cd StochasticDocking/
+  925  cd Code/
+  926  ls -l
+  927  cd source/
+  928  ls -l
+  929  cp paths.m paths2.m 
+  930  ls -l
+  931  rm paths.m
+  932  ls -l
+  933  mv paths2.m paths.m
+  934  ls -l
+  935  cd ..
+  936  ls -l
+  937  cd ..
+  938  ls -l
+  939  ./peruq
+  940  cd StochasticDocking/Code/data/cleanset/
+  941  ls -l
+  942  exit
+  943  ls -l
+  944  cd ls -l
+  945  ls -l
+  946  cat md_100.tar.gz 
+  947  1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;1;112;112;1;0x1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c1;2c
+  948  1;2c1;2c1;2c1;2c1;2c1;2c1;2c
+  949  ls -l
+  950  cd /projectnb/uqproj/
+  951  ls -l
+  952  cd StochasticDocking/
+  953  ls -l
+  954  cd ..
+  955  ls -l
+  956  rm -r StochasticDocking/
+  957  rm -r -f StochasticDocking/
+  958  pushd .
+  959  cd
+  960  ls -l
+  961  cd Projects/
+  962  ls -l
+  963  cp -r StochasticDocking/ /projectnb/uqproj/
+  964  ls pwd
+  965  pwd
+  966  ls -l
+  967  cd StochasticDocking/
+  968  ls -l
+  969  cd Code/source/p
+  970  cd Code
+  971  ls -l
+  972  cd toolbox/piper1/
+  973  ls -l
+  974  cat createlibraries-gnu.sh 
+  975  exit
+  976  vncstart
+  977  exit
+  978  vncstart
+  979  exit
+  980  xterm -rv &
+  981  top
+  982  exit
+  983  module load github
+  984  module load git
+  985  ls -l
+  986  cd /projectnb
+  987  ls -l
+  988  cd uqproj
+  989  ls -l
+  990  pushd .
+  991  cd
+  992  cd Projects/
+  993  ls -l
+  994  cp -r StochasticDocking/ /projectnb/uqproj/
+  995  top
+  996  exit
+  997  vncstart
+  998  exit
+  999  top
+ 1000  exit
+ 1001  ls -l\
+ 1002  cd /projectnb/uqproj/StochasticDocking/Code/source/
+ 1003  ls -l
+ 1004  cd pdbrealizations/
+ 1005  ls -l
+ 1006  cd ..
+ 1007  ls -l
+ 1008  cd tests/
+ 1009  ls -l
+ 1010  cat SDtests.m 
+ 1011  ls -l
+ 1012  cd ..
+ 1013  ls -l
+ 1014  cd ..
+ 1015  ls -l
+ 1016  cd source/
+ 1017  ls -l
+ 1018  pushd .
+ 1019  cd ..
+ 1020  ls -l
+ 1021  cd data
+ 1022  ls -l
+ 1023  cd md_trypsin/
+ 1024  ls -l
+ 1025  cd ..
+ 1026  ls -l
+ 1027  cd ..
+ 1028  ls -l
+ 1029  cd source/
+ 1030  ls -l
+ 1031  cd piper/
+ 1032  ls -l
+ 1033  cat piper_argfile
+ 1034  ls -l
+ 1035  cat piper_argfile
+ 1036  211808 Sep 25 14:01 prot_001_out.pdb
+ 1037  -rwxrwx--- 1 jcandas uqproj   211741 Sep 25 14:01 prot_002_o211808 Sep 25 14:01 prot_001_out.pdb
+ 1038  -rwxrwx--- 1 jcandas uqproj   211741 Sep 25 14:01 prot_002_o
+ 1039  cat piper_argfile
+ 1040  ls -l
+ 1041  cp piper_argfile piper_trypsin
+ 1042  ls -l
+ 1043  emacs piper_trypsin 
+ 1044  ls -l
+ 1045  pushd .
+ 1046  emacs piper_trypsin 
+ 1047  ls
+ 1048  ./minmax_list_pdb.pl 
+ 1049  cat multilig.pdb 
+ 1050  cat multirec.pdb 
+ 1051  pushd .
+ 1052  cd ..
+ 1053  ls -l
+ 1054  cd data
+ 1055  ls -l
+ 1056  cd md_trypsin/
+ 1057  ls -l
+ 1058  pwd
+ 1059  cd ..
+ 1060  popd
+ 1061  ls -l
+ 1062  ls
+ 1063  ls ../../data/md_trypsin/*
+ 1064  ls ../../data/md_trypsin/*_out.pdb
+ 1065  ls ../../data/md_trypsin/*_out.pdb > list_trypsin_pdb
+ 1066  cat list_trypsin_pdb 
+ 1067  minmax_list_pdb.pl list_trypsin_pdb 
+ 1068  ls -l
+ 1069  history 
+ 1070  minmax_list_pdb.pl list_trypsin_pdb > multirec_trypsin.pdf
+ 1071  cat multirec_trypsin.pdf 
+ 1072  minmax_list_pdb.pl list_trypsin_pdb > multirec_trypsin.pdb
+ 1073  ls -l *.pdf
+ 1074  rm *.pdf
+ 1075  pwd
+ 1076  ls -l
+ 1077  cat atoms.0.0.6.prm.ms.3cap+0.5ace.Hr0rec 
+ 1078  cat rot70k.0.0.6.jm.prm 
+ 1079  cat coeffs.0.0.6.cs1.0.serverdemo_zero 
+ 1080  history > instructions
