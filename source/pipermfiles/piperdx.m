@@ -4,10 +4,10 @@ function [parameters,data] = piperdx(methods,parameters);
 data = [];
 d = '/projectnb/uqproj/StochasticDocking/Code/data/md_trypsin/';
 %files = dir(['/projectnb/uqproj/StochasticDocking/Code/data/md_trypsin/','*.pdb']);
-files = dir([d,'*.pdb']);
+f = dir([d,'*.pdb']);
 %files =dir([parameters.piper.md,'/*.pdb']);
 
-list = {files.name};
+list = {f.name};
 l = length(list);
 %l = 2; %For test
 d = '/projectnb/uqproj/StochasticDocking/Code/source/piper/orig_grids';

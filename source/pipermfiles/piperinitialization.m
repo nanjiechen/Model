@@ -44,6 +44,7 @@ fprintf('\n')
 piper.nx = nx;
 piper.ny = ny;
 piper.nz = nz;
+piper.rotationwidth = 3000;
 piper.numrotations = 10;
 
 % Total memory per single rotation
