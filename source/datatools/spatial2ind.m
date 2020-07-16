@@ -22,18 +22,20 @@ for i = 1:M
 end
 end
 transition = A(:,11);
-OrigInd = transition + A(:,1)* parameters.piper.nx * parameters.piper.ny * parameters.piper.nz;
-K = OrigInd <= parameters.piper.nx * parameters.piper.ny * parameters.piper.nz * parameters.piper.rotationwidth;
-results.UnsortedIndex = OrigInd(K);
+% OrigInd = transition + A(:,1)* parameters.piper.nx * parameters.piper.ny * parameters.piper.nz;
+% results.OrigInd = OrigInd;
 [B,I] = sort(A(:,1));
+results.OrigRotation = A(:,1);
+results.SortedRotation = B;
 SI = transition(I);
 TransInd = SI + B * parameters.piper.nx * parameters.piper.ny * parameters.piper.nz;
 results.spatial2ind = A;
 results.Index = I;
 results.TransIndex = TransInd;
-J = results.TransIndex <= parameters.piper.nx * parameters.piper.ny * parameters.piper.nz * parameters.piper.rotationwidth;
-results.NewIndex = results.TransIndex(J);
+% J = results.TransIndex <= parameters.piper.nx * parameters.piper.ny * parameters.piper.nz * parameters.piper.rotationwidth;
+% results.NewIndex = results.TransIndex(J);
+%results.NewIndex = TransInd;
 AscendMat = A(I,:);
-results.SortedRotation = AscendMat(J,:);
+results.SortedMat = AscendMat;
 
 end
