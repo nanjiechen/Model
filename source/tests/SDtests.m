@@ -41,14 +41,14 @@ methods.ComputeStats = @ComputeStats;
 
 % Define parameters for GRF model
 parameters.GRFModel.numofeigenvalues = 2;
-parameters.flags.saveenergies = true;
-parameters.flags.loadenergies = true;
+parameters.flags.saveenergies = false;
+parameters.flags.loadenergies = false;
 parameters.flags.saveTrans = true;
 parameters.loadTransindex = true;
 parameters.flags.saveReordered = true;
 % memory parameters
-%parameters.piper.memory =   1.0e+11;
-parameters.piper.memory =   1.2e+10;
+parameters.piper.memory =   1.0e+11;
+%parameters.piper.memory =   4.8e+10;
 
 % Load stochastic realizations using piper
 fprintf('Load realizations --------------------------------------- \n');
