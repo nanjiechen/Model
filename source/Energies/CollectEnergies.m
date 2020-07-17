@@ -57,7 +57,9 @@ for j = 1 : l
    end
     EnergiesMat = [EnergiesMat EnergiesVec];
 end
-
+[tf, Index_order]= ismember(results.OrigRotation,results.SortedRotation);
+% [results.OrigRotation, Index_order] = sort(results.SortedRotation);
+EnergiesMat = EnergiesMat(Index_order,:);
  if SaveEnergy == true
         save(filename, 'EnergiesMat','-v7.3');
  end
