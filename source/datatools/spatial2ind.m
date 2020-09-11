@@ -4,11 +4,11 @@ function [parameters,results] = spatial2ind(parameters)
 A = load('../toolbox/dimitritools/ft.000.00');
 M = 70000;
 % fft_tind_to_gind.pl 0.79   0.46   0.79 84 96 84 1.0 13.792500 -1.544000 11.785500
-if parameters.loadTransindex ==  true
+if parameters.loadTransindex ==  true & exist('spatial2ind.mat', 'file')
       load('spatial2ind.mat');
 else
 for i = 1:M
-    command = ['../toolbox/dimitritools/fft_tind_to_gind.pl ',num2str(A(i,2:4)), ' 84 96 84 1.0 13.792500 -1.544000 11.785500'];
+    command = ['../toolbox/dimitritools/fft_tind_to_gind.pl ',num2str(A(i,2:4)), ' 96 90 80 1.0 20.289500 3.523500 -5.085500'];
 
     %command = '../toolbox/dimitritools/fft_tind_to_gind.pl 0.79   0.46   0.79 84 96 84 1.0 13.792500 -1.544000 11.785500';
     [status,cmdout] = system(command);
@@ -21,6 +21,7 @@ for i = 1:M
     
 end
 end
+save('spatial2ind.mat','A');
 transition = A(:,11);
 % OrigInd = transition + A(:,1)* parameters.piper.nx * parameters.piper.ny * parameters.piper.nz;
 % results.OrigInd = OrigInd;
