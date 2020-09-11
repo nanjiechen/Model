@@ -12,12 +12,12 @@
 
 % Define methods
 
-% Piper1
-methods.piperinit = @piperinitializationxyz;
+
 
 % Data types
 % methods.loadrealizations = @fakeproteinrealizations;
-
+% Piper1
+methods.piperinit = @piperinitializationxyz;
 % Piper methods
 methods.loadrealizations = @CollectLocations;
 methods.piper.writedx = @piperxyz;
@@ -33,10 +33,13 @@ methods.sparseinit = @sparseinitialization;
 
 % Karhunen-Loeve expansion for receptor map.
 methods.RecModel = @RecMapxyz;
-methods.Spatial2ind = @spatial2ind;
+% methods.Spatial2ind = @spatial2ind;
+ methods.Spatial2ind = @SortEnergies;
 % Run Piper again, get engergies.
 % methods.Energies = @EnergiesBlocks;
 methods.writepdb = @writepdb;
+methods.goodmultirec = @multirec;
+
 methods.CollectEng = @CollectEnergiesxyz;
 methods.ComputeStats = @ComputeStatsxyz;
 
@@ -46,13 +49,16 @@ parameters.GRFModel.KLRescale = 0.001;
 
 %Define flag parameters
 parameters.flags.saveenergies = true;
-parameters.flags.loadenergies = false;
+parameters.flags.loadenergies = true;
 parameters.flags.saveTrans = true;
 parameters.loadTransindex = true;
 parameters.flags.saveReordered = true;
 % memory parameters
 parameters.piper.memory =   1.8e+10;
 %parameters.piper.memory =   4.8e+10;
+
+
+
 
 % Load stochastic realizations using piper
 fprintf('Load realizations --------------------------------------- \n');
@@ -73,12 +79,13 @@ fprintf('\n');
 fprintf('Load Energies and Compute statistics -------------------- \n'); 
 fprintf('\n');
 % Obtain Energies
-
-[parameters,results] = methods.Spatial2ind(parameters);
-%[parameters,results] = methods.CollectEng(matfri,parameters,results);
 [parameters] = methods.writepdb(parameters);
+[parameters] = methods.goodmultirec(parameters);
+% Initialize piper
+parameters = methods.piperinit(parameters);
+[parameters,results] = methods.Spatial2ind(parameters);
+% [parameters,results] = methods.CollectEng(parameters,results);
 [parameters,results] = methods.CollectEng(parameters,results);
-
 % Compute Statistics
 fprintf('Compute statistics -------------------------------------- \n');
 fprintf('\n');

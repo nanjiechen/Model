@@ -13,8 +13,8 @@ meanData = results.ScaledEnergies;
 VarData  = meanData.^2;
 meanlogData = log(meanData);
 varlogData = meanlogData.^2;
-results.SampleMean = mean(MeanlogData');
-results.SampleVariance = var(MeanlogData');
+results.SampleMean = mean(meanlogData');
+results.SampleVariance = var(meanlogData');
 % compute integral
 
 
@@ -23,12 +23,12 @@ results.SampleVariance = var(MeanlogData');
 Qmeanlog = [meanlogData] * [Sr.weights]';
 Qmeanlogsquare  = [varlogData] * [Sr.weights]';
 % Statistics
-results.meanlog = Qmeanlog / ( (2 * width)^parameters.GRFModel.numofeigenvalues);
-% results.meanlog = Qmeanlog /( (2 * width)^parameters.GRFModel.numofeigenvalues);
+results.meanlog = Qmeanlog;
+
 % Sparse grid mean square
-meansquare = Qmeanlogsquare / ( (2 * width)^parameters.GRFModel.numofeigenvalues);
+results.meansquare = Qmeanlogsquare;
     
-results.varlog = meansquare - results.mean.^2;
+results.varlog = results.meansquare - results.meanlog.^2;
 
 A = results.SortedMat;
 
@@ -36,10 +36,10 @@ A(:,12) = results.varlog;
 A(:,13) = results.meanlog;
 
 results.TransMat = A;
-Transfname = append('TransMat','_','dim',num2str(parameters.GRFModel.numofeigenvalues),'xyz');
+Transfname = append('../data/PiperData/','TransMat','_','dim',num2str(parameters.GRFModel.numofeigenvalues),'xyz');
 if parameters.flags.saveTrans == true
 
 save (Transfname, 'A','-v7.3');
 end
-save 'PiperData';
+save '../data/PiperData/PiperData';
 end

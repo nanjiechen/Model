@@ -2,11 +2,12 @@ function [parameters,results] = CollectEnergiesxyz(parameters,results)
 
 % List of pdb files
 s = ceil(69999/parameters.piper.rotationwidth);
-
 z = parameters.piper.nx * parameters.piper.ny * parameters.piper.nz;
+
 LoadEnergy = parameters.flags.loadenergies;
 SaveEnergy = parameters.flags.saveenergies;
-filename = append('EnergiesMat','_',num2str(parameters.GRFModel.numofeigenvalues),'xyz','.mat');
+ filename = append('EnergiesMat','_',num2str(parameters.GRFModel.numofeigenvalues),'xyz','.mat');
+% filename = 'EnergiesMat_2_level4_0.1.mat';
 if exist(filename, 'file') == 2 & LoadEnergy == true
     load(filename);
 else
@@ -65,8 +66,9 @@ for j = 1:n
     [Energies,nx,ny,nz]= testpiperread(matfri,parameters);
      BlockEnergies = Energies(K);
     Block = [Block BlockEnergies]; 
-     save('xyzDataMat','-v7.3');
-%      clear Energies;
+       clear Energies;
+     save('../data/PiperData/xyzDataMat','-v7.3');
+
 end
     matfri = k * parameters.piper.rotationwidth;
        EnergiesMat = [EnergiesMat;Block]; 
@@ -79,7 +81,7 @@ end
 % [results.OrigRotation, Index_order] = sort(results.SortedRotation);
 EnergiesMat = EnergiesMat(Index_order,:);
 
-fname = append('EnergiesMat','_',num2str(parameters.GRFModel.numofeigenvalues),'_xyz_ordered');
+fname = append('../data/PiperData/','EnergiesMat','_',num2str(parameters.GRFModel.numofeigenvalues),'_xyz_ordered');
 if SaveEnergy == true
 save (fname, 'EnergiesMat','-v7.3');
 end
@@ -91,5 +93,8 @@ results.EnergiesMat = EnergiesMat;
     else
     results.ScaledEnergies = results.EnergiesMat;
  end
+%  cd piper
+%  [status,cmdout] = system('> multirec_trypsin_expand.pdb');
+%  cd ..
 end
     

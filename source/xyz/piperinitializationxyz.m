@@ -4,18 +4,18 @@ function parameters = piperinitializationxyz(parameters)
 % loadlibrary('./piper/libMatPiper')
 
 % Initialize piper variables
-piper.matfri = 0;
-piper.matlri = 0;
+parameters.piper.matfri = 0;
+parameters.piper.matlri = 0;
 %piper.output = int16(1);
-piper.output = int16(0); % Flag false for do not output the data
+parameters.piper.output = int16(0); % Flag false for do not output the data
 
 
-piper.Energies = 1;
-piper.piperfileread = 'piper_trypsin_read'; % Run piper from input dx files
-piper.piperfile     = 'piper_trypsin'; % Run piper from PDB files
+parameters.piper.Energies = 1;
+parameters.piper.piperfileread = 'piper_trypsin_read'; % Run piper from input dx files
+parameters.piper.piperfile     = 'piper_trypsin'; % Run piper from PDB files
 
-piper.DxFile = '';
-piper.md = '../../data/md_trypsin/';
+parameters.piper.DxFile = '';
+parameters.piper.md = '../../data/md_trypsin/';
 
 % Library call to first determine size of the results
 cd piper
@@ -41,19 +41,19 @@ t2 = toc;
 fprintf('Total execution time = %f \n', t2 - t1)    
 fprintf('\n') 
 
-piper.nx = nx;
-piper.ny = ny;
-piper.nz = nz;
-piper.numrotations = 10;
+parameters.piper.nx = nx;
+parameters.piper.ny = ny;
+parameters.piper.nz = nz;
+parameters.piper.numrotations = 10;
 
 % Total memory per single rotation
-piper.numcores = 8;
-piper.memperrot = nx * ny * nz * 4;
-piper.memory = parameters.piper.memory;
+parameters.piper.numcores = 8;
+parameters.piper.memperrot = nx * ny * nz * 4;
+parameters.piper.memory = parameters.piper.memory;
 
 
 % Save piper structure in parameters
-parameters.piper = piper;
+% parameters.piper = piper;
 
 %%
 

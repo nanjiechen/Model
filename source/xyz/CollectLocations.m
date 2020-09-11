@@ -1,8 +1,7 @@
 function [parameters,data] = CollectLocations(methods,parameters);
 
 
-% Initialize piper
-parameters = methods.piperinit(parameters);
+
 
 % Dummy 
 data = [];
