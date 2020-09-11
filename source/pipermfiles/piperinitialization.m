@@ -11,7 +11,7 @@ piper.output = int16(0); % Flag false for do not output the data
 
 
 piper.Energies = 1;
-piper.piperfileread = 'piper_trypsin_read'; % Run piper from input dx files
+piper.piperfileread = 'piper_trypsin_read_deb'; % Run piper from input dx files
 piper.piperfile     = 'piper_trypsin'; % Run piper from PDB files
 
 piper.DxFile = '';
