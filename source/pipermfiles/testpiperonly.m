@@ -60,8 +60,8 @@ t1 = toc;
 t2 = toc;
 fprintf('Total execution time = %f \n', t2 - t1)    
 fprintf('\n') 
-en = norm(Energies2(1:length(Energies)) - Energies);
-fprintf('norm of difference = %f \n',en)
+% en = norm(Energies2(1:length(Energies)) - Energies);
+% fprintf('norm of difference = %f \n',en)
 
 fprintf('matlri1 = %f matlri2= %f \n',matlri,matlri2)
 
