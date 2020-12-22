@@ -28,7 +28,7 @@ methods.ProteinStochasticModel = @GRFmodelxyz;
 % Eigenmodels
 methods.EigenDecomposition = @ComputeEigenxyz;
 % Create RBF sample nodes
-methods.RBFinit = @RBFinitialization;
+methods.RBFinit = @NewRBFinitialization;
 % Create Sparse grids
 methods.sparseinit = @sparseinitialization;
 
@@ -41,7 +41,7 @@ methods.RecModel = @RecMapRBF;
 methods.writepdb = @writepdb;
 methods.goodmultirec = @multirec;
 methods.RBF = @RBFTests;
-methods.CollectEng = @CollectEnergiesRBF;
+methods.CollectEng = @CollectEnergiesNewTech;
 methods.ComputeStats = @ComputeStatsRBF;
 
 % Define parameters for GRF model

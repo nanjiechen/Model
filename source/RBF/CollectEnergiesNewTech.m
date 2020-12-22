@@ -1,11 +1,13 @@
 
-function [parameters,results] = CollectEnergiesRBF(parameters,results,methods)
-parameters.piper.rotationwidth = 1;
-% s = ceil(69999/parameters.piper.rotationwidth);
-s = length(results.TransIndex);
+function [parameters,results] = CollectEnergiesNewTech(parameters,results,methods)
+parameters.piper.rotationwidth = 3000;
+s = ceil(69999/parameters.piper.rotationwidth);
+% s = length(results.TransIndex);
 
 z = parameters.piper.nx * parameters.piper.ny * parameters.piper.nz;
 rotations = results.SortedMat(:,1) -1;
+
+
 
 LoadEnergy = parameters.flags.loadenergies;
 SaveEnergy = parameters.flags.saveenergies;
@@ -40,7 +42,7 @@ EnergiesMat = [];
 results.RBFCoeffVec = [];
 Trans = results.SortedMat(:,2);
 RBFMat = [];
-for k = 1:1
+for k = 1:s
 %       matfri = rotations(k);
 %       ind = Trans(k);
   matfri = (k -1) * parameters.piper.rotationwidth;
@@ -87,19 +89,19 @@ end
 results.Block = Block;
 EnergiesMat = [EnergiesMat;Block]; 
 matfri = k * parameters.piper.rotationwidth;
-RBFvec = [];
-for z = 1:size(results.Block,1)
-    results.Blockvector = results.Block(z,:);
-  [parameters,results] = methods.RBF(parameters,results);
-  ys = results.RBFys';
-  RBFapprox = [RBFapprox ; ys];
-  RBFvec  = [RBFvec; RBFapprox];
-
-end  
-RBFMat = [RBFMat RBFvec];
        
- end
 end
+ save('../data/PiperData/NewTechEng','-v7.3')
+end
+ load('Weihgts_roots.mat'); % the data file name may vary!
+         
+         % Notice that you should already constructed an object before
+             R.roots_1d=roots;
+             R.weights_1d=weights;
+             quabak=R.Baking;
+
+   
+
 
 
 % [tf, Index_order]= ismember(results.OrigRotation,results.SortedRotation);

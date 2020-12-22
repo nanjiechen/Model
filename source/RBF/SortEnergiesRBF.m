@@ -51,25 +51,27 @@ A = A(ind,:);
 save('../data/PiperData/SortedMatrix.mat','A');
 results.OrderedMatrix = A;
 %  v = [802,3118,4832,7933,8657,8907,16771,8502,20448,24890]'; 
- v = [802]';
-D = A(v,:);
-SortedMat = D;
-results.SortedMat = D;
+%  v = [802]';
+% D = A(v,:);
+SortedMat = A;
+results.SortedMat = A;
+% SortedMat = D;
+% results.SortedMat = D;
 %% 
  z = parameters.piper.nx * parameters.piper.ny * parameters.piper.nz;
 % load('SortedMat.mat');
-% transition = SortedMat(:,2);
-% [B,I] = sort(SortedMat(:,1));
-% results.OrigRotation = SortedMat(:,1);
-% results.SortedRotation = B;
-% SI = transition(I);
-% TransInd = SI + (B-1) * z;
-% results.spatial2ind = SortedMat;
-% results.Index = I;
-% results.TransIndex = TransInd;
-% AscendMat = SortedMat(I,:);
-% results.SortedMat = AscendMat;
-results.TransIndex = SortedMat(:,2) + z * (SortedMat(:,1) -1);
+transition = SortedMat(:,2);
+[B,I] = sort(SortedMat(:,1));
+results.OrigRotation = SortedMat(:,1);
+results.SortedRotation = B;
+SI = transition(I);
+TransInd = SI + (B-1) * z;
+results.spatial2ind = SortedMat;
+results.Index = I;
+results.TransIndex = TransInd;
+AscendMat = SortedMat(I,:);
+results.SortedMat = AscendMat;
+% results.TransIndex = results.SortedMat(:,2) + z * (results.SortedMat(:,1) -1);
 %% 
 end
 

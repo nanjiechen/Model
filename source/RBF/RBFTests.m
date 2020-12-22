@@ -2,40 +2,61 @@ function [parameters,results] = RBFTests(parameters,results)
 
 %% 2. Obtain RBF, inputs: gridnodes & yvalues
 gridnodes = parameters.stochasticmodel.RBF.nodes';
-yvalues = results.Block';
-XX = parameters.stochasticmodel.Sr.knots(1,:)';
-YY = parameters.stochasticmodel.Sr.knots(2,:)';
-        % 2.1 Set parameter
-                lowerbounds=[-3, -3];
-                upperbounds=[3, 3];
-                POLYopts.varnames = {'X','Y'};
-                POLYopts.basistype = 'legendre';
-                POLYopts.degrees=[4,4]; % degree of polynomials in each dimension
-                POLYopts.indexsettype='totaldegree';
-                POLYopts.totaldegreevalue = 5;
-                RBFopts.shapeparam=[5, 1, 1];
-                RBFopts.kerneltype = 5;
-                
+yvalues = results.Blockvector';
+% XX = parameters.stochasticmodel.Sr.knots(1,:)';
+% YY = parameters.stochasticmodel.Sr.knots(2,:)';
+%         % 2.1 Set parameter
+%                 lowerbounds=[-3, -3];
+%                 upperbounds=[3, 3];
+%                 POLYopts.varnames = {'X','Y'};
+%                 POLYopts.basistype = 'legendre';
+%                 POLYopts.degrees=[4,4]; % degree of polynomials in each dimension
+%                 POLYopts.indexsettype='totaldegree';
+%                 POLYopts.totaldegreevalue = 5;
+%                 RBFopts.shapeparam=[5, 1, 1];
+%                 RBFopts.kerneltype = 5;
+                Np = 27;
+                xp = linspace(-3, 3, Np);
+                yp = linspace(-3, 3, Np);
+            [X1, Y1] = meshgrid(xp, yp);
+            XX1 = reshape(X1, Np*Np, 1);
+            YY1 = reshape(Y1, Np*Np, 1);
+            gridnodes=[XX1,YY1];  
+
+        lowerbounds=[-3, -3];
+        upperbounds=[3, 3];
+        
+        POLYopts.varnames = {'X','Y'};
+        POLYopts.basistype = 'legendre';
+        POLYopts.indexsettype='totaldegree';
+        POLYopts.totaldegreevalue = 4;
+        POLYopts.degrees=[3,3];
+        
+        RBFopts.shapeparam=[10, 1, 1, 1];
+        RBFopts.kerneltype = 6; 
+
         % 2.2 Construct Object
-                R = Radialbasis(gridnodes,lowerbounds,upperbounds,RBFopts,POLYopts);
+                R = Radialbasis(gridnodes,lowerbounds,upperbounds,RBFopts,POLYopts,xp);
                 
         % 2.3 Interpolate 
                 R.Interpolate(yvalues); % no out put in work space, all stored in object: R
                 
         % 2.4 Evaluate at any set of points you want, e.g Gaussian quadrature points (it should be of form [XX,YY], a columnvector), then you will get the function values: ys
-                [ys]=R.Evaluate([XX,YY]);
-
-    results.RBFys = ys;            
+%                 [ys]=R.Evaluate([XX,YY]);
+% 
+%     results.RBFys = ys;  
+    results.RBFCoeffVec = [results.RBFCoeffVec R.coeff];
+    results.R = R;
 %% Quadrature the RBF
-
-tic
-        opts.ploy.level = POLYopts.totaldegreevalue;
-        opts.poly.quadtype='clenshaw-curtis';     
-        opts.RBF.level=2;
-        opts.RBF.quadtype='uniform';
-        opts.RBF.adaptype='exact-multiquadric';     
-        adaptquad= R.Quadrature(opts);         
-toc
+% 
+% tic
+%         opts.ploy.level = POLYopts.totaldegreevalue;
+%         opts.poly.quadtype='clenshaw-curtis';     
+%         opts.RBF.level=2;
+%         opts.RBF.quadtype='uniform';
+%         opts.RBF.adaptype='exact-multiquadric';     
+%         adaptquad= R.Quadrature(opts);         
+% toc
 
 
 % %% Draw the Graphs

@@ -1,0 +1,234 @@
+%% Resacle energies and take a log
+ EnergiesMat = EnergiesMat(1:70000,:);
+ allMin = min(EnergiesMat, [],'all');
+ if allMin < 1
+    EnergiesMat = EnergiesMat + ( 1 - allMin);
+ end
+ EnergiesMat = log(EnergiesMat);
+%% 
+        
+
+
+gridnodes = parameters.stochasticmodel.RBF.nodes';
+                Np = 27;
+                xp = linspace(-3, 3, Np);
+%             yp = linspace(-3, 3, Np);
+%             [X1, Y1] = meshgrid(xp, yp);
+%             XX1 = reshape(X1, Np*Np, 1);
+%             YY1 = reshape(Y1, Np*Np, 1);
+%             gridnodes=[XX1,YY1];  
+
+        lowerbounds=[-3, -3];
+        upperbounds=[3, 3];
+        
+        POLYopts.varnames = {'X','Y'};
+        POLYopts.basistype = 'legendre';
+        POLYopts.indexsettype='totaldegree';
+        POLYopts.totaldegreevalue = 4;
+        POLYopts.degrees=[3,3];
+        
+        RBFopts.shapeparam=[10, 1, 1, 1];
+        RBFopts.kerneltype = 6; 
+
+        % 2.2 Construct Object
+           %Interpolate Energies
+                R = Radialbasis(gridnodes,lowerbounds,upperbounds,RBFopts,POLYopts,xp);
+                RBFcoeff = zeros(size(EnergiesMat,1),size(EnergiesMat,2));
+                Polycoeff = [];
+                %For each rotation?do the interpolation and get the
+                %coefficients.
+                for j = 1:size(EnergiesMat,1)
+                yvalues = EnergiesMat(j,:)';
+                 R.Interpolate(yvalues);
+                 RBFcoeff(j,:) = R.RBFcoeff';
+                 Polycoeff = [Polycoeff; R.polycoeff'];
+                end
+                RBFcoeff = reshape(RBFcoeff,size(RBFcoeff,1),Np,Np);
+               %Interpolate the square of Energies 
+                RBFcoeffSquare = zeros(size(EnergiesMat,1),size(EnergiesMat,2));
+                PolycoeffSquare = [];
+                for j = 1:size(EnergiesMat,1)
+                yvalues = EnergiesMat(j,:)';
+                ysquare = yvalues.^2;
+                 R.Interpolate(ysquare);
+                 RBFcoeffSquare(j,:) = R.RBFcoeff';
+                 PolycoeffSquare = [PolycoeffSquare; R.polycoeff'];
+                end
+                RBFcoeffSquare = reshape(RBFcoeffSquare,size(RBFcoeff,1),Np,Np);
+%% %%     
+        level = 8;
+        dim = 2;
+        % knots = @(n) knots_uniform(n,-1,1,'nonprob');
+        knots=@(n) knots_gaussian(n,0,1);
+        S = smolyak_grid(dim,level,knots,@lev2knots_doubling);
+        Srsmg = reduce_sparse_grid(S);
+        [yssss,Polyevalssss] = R.Evaluate(Srsmg.knots');       
+        polyquadss = Srsmg.weights*Polyevalssss;
+       
+
+%%  New Tech
+             load('Weights_roots.mat'); % the data file name may vary!
+         % Notice that you should already constructed an object before
+             R.roots_1d=roots;
+             R.weights_1d=weights;
+             quabak=R.Baking;
+             NewInt = [];
+             NewSquareInt = [];
+
+             for j = 1: size(RBFcoeff,1)
+             NewInt = [NewInt ;sum(RBFcoeff(j,:,:).*quabak,'all') + polyquadss];
+             NewSquareInt = [NewSquareInt ;sum(RBFcoeffSquare(j,:,:).*quabak,'all') + polyquadss];
+             end
+             NewVar = NewSquareInt - NewInt.^2;
+    %% Simpson Rule
+min(EnergiesMat, [],'all')
+    % Notice that we cacluate one quadrant and the center points (then combine them together), so many lines of codes are duplicated
+    
+    % 0. Parameter
+        numofloop=8;
+        b=3;
+        lowerbounds=[-b, -b];
+        upperbounds=[b, b];
+        densfactor_= 4;
+        centerindex=(size(R.nodes_1d,2)+1)/2; % we assume 'size(R.nodes_1d,2)' is odd , quaindex is the center point of interpolation grid node's index
+        
+
+    % 1. Allocate memory ('result_mesh_int_Simp' is similiar to 'quabak' in new tech, the final result we need)
+    
+        result_mesh_int_Simp=zeros(size(R.nodes_1d,2),size(R.nodes_1d,2),numofloop);
+        result_numofpoints=zeros(2,numofloop);
+    
+
+for ggg = 1:numofloop % different density of mesh grid
+    
+    Np=densfactor_*ggg^3+1; % number of knots in 1D
+    
+        xp2 = linspace(lowerbounds(1), upperbounds(1), Np);
+        yp2 = linspace(lowerbounds(2), upperbounds(2), Np);
+        [X, Y] = meshgrid(xp2, yp2);
+        XX = reshape(X, Np*Np, 1);
+        YY = reshape(Y, Np*Np, 1);
+        K2 = mvnpdf([XX,YY]);
+% 2. one quadrant
+    for i = 1:centerindex-1 % position i
+
+        for m = 1:centerindex % position j
+            
+        center=[R.nodes_1d(i),R.nodes_1d(m)];
+
+        
+      % 2.1. Evaluate
+     
+       SimpsonRBFopts = RBFopts;
+       SimpsonRBFopts.shapeparam(1) = RBFopts.shapeparam(1)*2/range(R.nodes_1d);
+        ys = Radialbasis.kernelmatrix(center,[XX,YY],SimpsonRBFopts);
+        yg=ys.*K2; 
+        ygg=reshape(yg, Np, Np); 
+        delta_xy=prod(upperbounds-lowerbounds,'all')/size(yg,1);
+        % the sum of vertex
+            sum_vertex=ygg(1,1)+ygg(1,Np)+ygg(Np,1)+ygg(Np,Np);  
+      % 2.2 Simpson Rule (Warning, Np should be odd!!!)
+                    odd = 2:2:Np-1;
+                    even = 3:2:Np-2;
+                    
+                    sum_edge_even = 2*( sum(ygg(1,even)) + sum(ygg(Np,even)) +sum(ygg(even,1)) +sum(ygg(even,Np)));
+                    sum_edge_odd  = 4*( sum(ygg(1,odd)) +  sum(ygg(Np,odd)) + sum(ygg(odd,1)) + sum(ygg(odd,Np)));
+                    
+                    sum_inter_even= 16*sum(ygg(odd,odd),'all') + 4*sum(ygg(even,even),'all');
+                    sum_inter_odd= 8*sum(ygg(even,odd),'all') + 8*sum(ygg(odd,even),'all');
+                    
+                    int_Simp(i,m)= delta_xy/9* (sum_inter_odd+sum_inter_even+sum_edge_odd+sum_edge_even+sum_vertex); 
+        
+        end
+
+    end
+
+% 3. center point (most of the codes are the same as above)
+    
+        center=[R.nodes_1d(centerindex),R.nodes_1d(centerindex)];
+      % 3.1. Evaluate
+        ys = Radialbasis.kernelmatrix(center,[XX,YY],SimpsonRBFopts);
+        yg=ys.*K2;
+        ygg=reshape(yg, Np, Np); 
+        delta_xy=prod(upperbounds-lowerbounds,'all')/size(yg,1);
+        % the sum of vertex
+            sum_vertex=ygg(1,1)+ygg(1,Np)+ygg(Np,1)+ygg(Np,Np);  
+      % 3.2 Simpson Rule (Warning, Np should be odd!!!)
+                    odd = 2:2:Np-1;
+                    even = 3:2:Np-2;
+                    
+                    sum_edge_even = 2*( sum(ygg(1,even)) + sum(ygg(Np,even)) +sum(ygg(even,1)) +sum(ygg(even,Np)));
+                    sum_edge_odd  = 4*( sum(ygg(1,odd)) +  sum(ygg(Np,odd)) + sum(ygg(odd,1)) + sum(ygg(odd,Np)));
+                    
+                    sum_inter_even= 16*sum(ygg(odd,odd),'all') + 4*sum(ygg(even,even),'all');
+                    sum_inter_odd= 8*sum(ygg(even,odd),'all') + 8*sum(ygg(odd,even),'all');
+                    
+                    int_Simp_center= delta_xy/9* (sum_inter_odd+sum_inter_even+sum_edge_odd+sum_edge_even+sum_vertex); 
+    
+% 4. Combine them into a square matrix    for j = 1:level
+
+%         line=int_Simp(:,6);
+%         cube=int_Simp(:,1:5);
+        line=int_Simp(:,14);
+        cube=int_Simp(:,1:13);
+       % this is the integration matrix (key result)
+          result_mesh_int_Simp(:,:,ggg)=[cube,line,rot90(cube,3); rot90(line,1),int_Simp_center ,rot90(line,3);rot90(cube,1),rot90(line,2),rot90(cube,2)];
+       % these are number of points we used (complexity)
+          result_numofpoints(1,ggg)=Np^2; % total # points
+          result_numofpoints(2,ggg)=Np;   % 1-D
+                    
+end
+
+%Integration
+SimpsonMean = [];
+RBFSquareInt = [];
+for i = 1:numofloop
+    SimpsonPerLevel = [];
+    RBFInt = [];
+for j = 1: size(RBFcoeff,1)
+RBFInt = [RBFInt ;sum(RBFcoeff(j,:,:).*result_mesh_int_Simp(:,:,i),'all') + polyquadss];
+SimpsonPerLevel = [SimpsonPerLevel ;sum(RBFcoeffSquare(j,:,:).*result_mesh_int_Simp(:,:,i),'all') + polyquadss];
+
+end
+SimpsonMean = [SimpsonMean RBFInt]; %Mean
+RBFSquareInt = [RBFSquareInt SimpsonPerLevel]; %Second moment
+end
+SimpsonVar = RBFSquareInt - SimpsonMean.^2; %Variance
+%% G-H-Smolyak
+
+
+    G_H_smolyak_numpoint=zeros(1,numofloop);
+    G_H_smolyak=zeros(size(R.nodes_1d,2),size(R.nodes_1d,2),numofloop);
+    
+
+for levelgg = 1:numofloop
+                    level = levelgg+3;
+                    dim = 2;
+                    knots=@(n) knots_gaussian(n,0,1);                
+                    S = smolyak_grid(dim,level,knots,@lev2knots_doubling);
+                    Sr = reduce_sparse_grid(S);
+    for i= 1:size(R.nodes_1d,2)
+        for j= 1:size(R.nodes_1d,2)
+                    center=[R.nodes_1d(i),R.nodes_1d(j)];
+                    ysHer = Radialbasis.kernelmatrix(center,Sr.knots',RBFopts);    
+                    G_H_smolyak(i,j,levelgg) = Sr.weights*ysHer;
+                    G_H_smolyak_numpoint(1,levelgg)=size(Sr.knots,2);  
+        end    
+    end
+
+end
+         
+ SmolyakMean = [];
+ SmolyakSquareInt = [];
+for i = 1:numofloop
+    SquarePerLevel = [];
+    SmolyakInt = [];
+for j = 1: size(RBFcoeff,1)
+SmolyakInt = [SmolyakInt ;sum(RBFcoeff(j,:,:).*G_H_smolyak(:,:,i),'all') + polyquadss];
+SquarePerLevel = [SquarePerLevel ;sum(RBFcoeffSquare(j,:,:).*G_H_smolyak(:,:,i),'all') + polyquadss];
+
+end  
+SmolyakMean = [SmolyakMean SmolyakInt]; %Mean
+SmolyakSquareInt = [SmolyakSquareInt SquarePerLevel]; %Second moment
+end
+SmolyakVar = SmolyakSquareInt - SmolyakMean.^2; %Variance
