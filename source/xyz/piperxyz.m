@@ -17,7 +17,7 @@ ls = {files.name};
 n = length(ls); %Number of rec_grid maps
 parameters.piper.NumofRecMap = n;
 
-fid = fopen(parameters.piper.piperfile,'r');
+fid = fopen('piper_trypsin','r');
 i = 1;
 tline = fgetl(fid);
 A{i}= tline;
