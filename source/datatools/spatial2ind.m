@@ -28,6 +28,7 @@ transition = A(:,11);
 [B,I] = sort(A(:,1));
 results.OrigRotation = A(:,1);
 results.SortedRotation = B;
+%SI is the sorted transition
 SI = transition(I);
 TransInd = SI + B * parameters.piper.nx * parameters.piper.ny * parameters.piper.nz;
 results.spatial2ind = A;
