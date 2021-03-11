@@ -31,7 +31,7 @@ fclose(fid);
 x = [];
 y = [];
 z = [];
-j =1;
+
 for j = 1:l
    
   PDBStruct = pdbread(list{j});
