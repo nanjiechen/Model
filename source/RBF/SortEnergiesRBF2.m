@@ -1,5 +1,5 @@
 %Obtain Energies
-function [parameters,results] = SortEnergiesRBF(parameters)
+function [parameters,results] = SortEnergiesRBF2(parameters)
 parameters.piper.rotationwidth = 3000;
 matfri = 0;
 % l = parameters.stochasticmodel.numofgrids;
@@ -73,4 +73,3 @@ results.AscendingSortedMat = AscendMat;
 % results.TransIndex = results.SortedMat(:,2) + z * (results.SortedMat(:,1) -1);
 %% 
 end
-

@@ -1,5 +1,5 @@
 
-function [parameters,results] = CollectEnergiesNewTech(parameters,results,methods)
+function [parameters,results] = CollectEnergiesNewTech_test(parameters,results,methods)
 parameters.piper.rotationwidth = 100;
 s = ceil(69999/parameters.piper.rotationwidth);
 % s = length(results.TransIndex);
@@ -72,15 +72,15 @@ for j = 1:n
      BlockEnergies = Energies(K);
      Block = [Block BlockEnergies]; 
        clear Energies;
-%    save('../data/PiperData/RBFDataMat','-v7.3');      
+   
      
 end
 results.Block = Block;
 EnergiesMat = [EnergiesMat;Block]; 
 matfri = k * parameters.piper.rotationwidth;
-save('../data/PiperData/RBFDataMat2','-v7.3');       
+save('../data/PiperData/RBFDataMat3','-v7.3');      
 end
-save('../data/PiperData/NewTechEng','-v7.3')
+ save('../data/PiperData/NewTechEng3','-v7.3')
 end
 
    
@@ -90,7 +90,7 @@ end
 % [tf, Index_order]= ismember(results.OrigRotation,results.SortedRotation);
 % EnergiesMat = EnergiesMat(Index_order,:);
 
-fname = append('../data/PiperData/','EnergiesMat','_',num2str(parameters.GRFModel.numofeigenvalues),'_',num2str(parameters.GRFModel.KLRescale));
+fname = append('../data/PiperData/','EnergiesMat','_',num2str(parameters.GRFModel.numofeigenvalues),'_',num2str(parameters.GRFModel.numofeigenvalues),'2');
 if SaveEnergy == true
 save (fname, 'EnergiesMat','-v7.3');
 end

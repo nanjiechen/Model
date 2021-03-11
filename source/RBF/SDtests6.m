@@ -17,7 +17,7 @@
 % Data types
 % methods.loadrealizations = @fakeproteinrealizations;
 % Piper1
-methods.piperinit = @piperinitializationsort;
+methods.piperinit = @piperinitializationxyz;
 % Piper methods
 methods.loadrealizations = @CollectLocations;
 methods.piper.writedx = @piperxyz;
@@ -41,7 +41,7 @@ methods.RecModel = @RecMapRBF;
 methods.writepdb = @writepdb;
 methods.goodmultirec = @multirec;
 methods.RBF = @RBFTests;
-methods.CollectEng = @CollectEnergiesNewTechSort;
+methods.CollectEng = @CollectEnergiesNewTech;
 methods.ComputeStats = @ComputeStatsRBF;
 
 % Define parameters for GRF model

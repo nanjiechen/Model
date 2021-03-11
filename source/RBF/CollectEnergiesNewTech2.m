@@ -1,8 +1,9 @@
 
-function [parameters,results] = CollectEnergiesNewTech(parameters,results,methods)
-parameters.piper.rotationwidth = 100;
-s = ceil(69999/parameters.piper.rotationwidth);
-% s = length(results.TransIndex);
+function [parameters,results] = CollectEnergiesNewTech2(parameters,results,methods)
+parameters.piper.rotationwidth = 1;
+% s = ceil(69999/parameters.piper.rotationwidth);
+s = size(results.SortedMat,1);
+
 z = parameters.piper.nx * parameters.piper.ny * parameters.piper.nz;
 
 LoadEnergy = parameters.flags.loadenergies;
@@ -40,16 +41,16 @@ Trans = results.SortedMat(:,2);
 rotations = results.SortedMat(:,1) -1;
 RBFMat = [];
 
- for k = 1:s
-%       matfri = rotations(k);
-%       ind = Trans(k);
-  matfri = (k -1) * parameters.piper.rotationwidth;
-     if matfri + parameters.piper.rotationwidth > 70000
-    BlockIndex = results.TransIndex( (k - 1) * parameters.piper.rotationwidth + 1 : end);  
-    else
-    BlockIndex = results.TransIndex( (k - 1) * parameters.piper.rotationwidth + 1 : parameters.piper.rotationwidth * k);
-    end
-    K = BlockIndex - z * (k -1) * parameters.piper.rotationwidth;
+ for k = 6:s
+      matfri = rotations(k);
+      ind = Trans(k);
+%   matfri = (k -1) * parameters.piper.rotationwidth;
+%      if matfri + parameters.piper.rotationwidth > 70000
+%     BlockIndex = results.TransIndex( (k - 1) * parameters.piper.rotationwidth + 1 : end);  
+%     else
+%     BlockIndex = results.TransIndex( (k - 1) * parameters.piper.rotationwidth + 1 : parameters.piper.rotationwidth * k);
+%     end
+%     K = BlockIndex - z * (k -1) * parameters.piper.rotationwidth;
       Block = [];
 
 for j = 1:n
@@ -69,28 +70,28 @@ for j = 1:n
        
      
     [Energies,nx,ny,nz]= testpiperread(matfri,parameters);
-     BlockEnergies = Energies(K);
+     BlockEnergies = Energies(ind);
      Block = [Block BlockEnergies]; 
        clear Energies;
-%    save('../data/PiperData/RBFDataMat','-v7.3');      
+     save('../data/PiperData/RBFDataMat','-v7.3');
      
 end
 results.Block = Block;
 EnergiesMat = [EnergiesMat;Block]; 
-matfri = k * parameters.piper.rotationwidth;
-save('../data/PiperData/RBFDataMat2','-v7.3');       
+
+       
 end
-save('../data/PiperData/NewTechEng','-v7.3')
+ save('../data/PiperData/NewTechEng','-v7.3')
 end
 
    
 
 
-% 
+
 % [tf, Index_order]= ismember(results.OrigRotation,results.SortedRotation);
 % EnergiesMat = EnergiesMat(Index_order,:);
 
-fname = append('../data/PiperData/','EnergiesMat','_',num2str(parameters.GRFModel.numofeigenvalues),'_',num2str(parameters.GRFModel.KLRescale));
+fname = append('../data/PiperData/','EnergiesMat','_',num2str(parameters.GRFModel.numofeigenvalues),'_RBFNewTech_ordered');
 if SaveEnergy == true
 save (fname, 'EnergiesMat','-v7.3');
 end

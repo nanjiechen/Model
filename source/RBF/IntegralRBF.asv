@@ -2,7 +2,7 @@
  NumOfRotations = 1000;
  EnergiesMat = EnergiesMat(1:NumOfRotations,:);
 %  allMin = min(EnergiesMat, [],'all');
-allMin = -308.1938;
+allMin = -308
  if allMin < 1
     EnergiesMat = EnergiesMat + ( 1 - allMin);
  end
