@@ -1,0 +1,120 @@
+/*
+Matlab interface to piper 
+
+Julio E. Castrillon-Candas
+
+[Energies,nx,ny,nz] = calllib('libMatPiperSort','MatPiper',Energies,1,1,1, nrind, rind, output, piperfile);
+
+
+Inputs:
+-------
+
+Outputs:
+--------
+
+*/
+#include <stdlib.h>
+#include "mex.h"
+#include "libMatPiperSort.h"
+
+#define	   MNX_IN	prhs[0]
+#define	   MNY_IN	prhs[1]
+#define	   MNZ_IN	prhs[2]
+#define	   NRIND_IN	prhs[3]
+#define	   RIND_IN	prhs[4]
+#define	   OUTF_IN	prhs[5]
+#define	   PIPERFILE_IN	prhs[6]
+
+#define	NXYZ_OUT  plhs[0]
+
+void mexFunction( int nlhs, mxArray *plhs[], 
+		  int nrhs, const mxArray*prhs[] )
+{
+
+  float *energies;
+  double *mnx, *mny, *mnz;
+  double *outNxyz;
+
+  int  nrind, outputflag;
+  int *rind;
+
+  double N;
+
+  char *piperfilename;
+
+  // energies = (float*) mxGetData(E_IN);
+  
+  mnx  = mxGetPr(MNX_IN);
+  mny  = mxGetPr(MNY_IN); 
+  mnz  = mxGetPr(MNZ_IN);
+  rind = (int*) mxGetData(RIND_IN);
+  nrind = mxGetScalar(NRIND_IN);
+  outputflag = mxGetScalar(OUTF_IN);
+  piperfilename = mxArrayToString(PIPERFILE_IN);
+
+  char *argfile = piperfilename;
+
+  NXYZ_OUT = mxCreateDoubleMatrix(3,1,mxREAL);
+  outNxyz = mxGetPr(NXYZ_OUT);
+
+  N = (*mnx) * (*mny) * (*mnz) * (double) nrind;
+
+
+  printf("nrind = %d, N = %f \n", nrind, N);
+
+
+
+  // Create array of floats
+  
+  unsigned long long Nm = (unsigned long long )N;
+
+
+  for (int i=0; i<nrind; i++){printf("%d rind  = %f \n", i, rind[i]);}
+
+
+  FILE * fp;
+
+  fp = fopen ("file.txt", "w+");
+  
+  
+  fprintf(fp,"Start \n");
+  fprintf(fp,"N = %f, Nm = %d \n", N, Nm);
+  printf(fp,"N = %f, Nm = %d \n", N, Nm);
+
+  energies = (float*)malloc(Nm * sizeof(float));
+
+  
+  //mxCreateNumericMatrix(ROWS, COLUMNS, mxDOUBLE_CLASS, mxREAL);
+
+
+  
+  // energies = mxGetPr(E_OUT);
+
+  if (outputflag == 0)		     
+    {*energies = 0;}
+
+
+  printf("nx = %f, ny = %f, nz = %f \n", *mnx, *mny, *mnz);
+  fprintf(fp,"nx = %f, ny = %f, nz = %f \n", *mnx, *mny, *mnz);
+
+  fclose(fp);
+
+
+  // MatPiper(energies,mnx,mny,mnz,nrind,rind,outputflag,argfile);  
+
+ 
+  // Output the data
+
+  outNxyz[0] = *mnx;
+  outNxyz[1] = *mny;
+  outNxyz[2] = *mnz;
+ 
+  // E_OUT = mxCreateDoubleMatrix(N,1,mxSINGLE_CLASS, mxREAL);
+
+  
+
+  free(energies);
+
+}
+
+// extern void MatPiper(float *outvals, double *mnx, double *mny, double *mnz, int nrind, int *rind, int outputflag, char *piperfilename);

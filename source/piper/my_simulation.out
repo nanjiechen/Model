@@ -1,0 +1,32 @@
+Load realizations --------------------------------------- 
+
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('cd')" style="font-weight:bold">cd</a>
+Cannot CD to /projectnb2/uqproj/StochasticDocking/Code/source/piper/piper (Name is nonexistent or not a
+directory).
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('piperinitialization', '/projectnb2/uqproj/StochasticDocking/Code/source/pipermfiles/piperinitialization.m', 21)" style="font-weight:bold">piperinitialization</a> (<a href="matlab: opentoline('/projectnb2/uqproj/StochasticDocking/Code/source/pipermfiles/piperinitialization.m',21,0)">line 21</a>)
+cd piper
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('piperdata', '/projectnb2/uqproj/StochasticDocking/Code/source/pipermfiles/piperdata.m', 5)" style="font-weight:bold">piperdata</a> (<a href="matlab: opentoline('/projectnb2/uqproj/StochasticDocking/Code/source/pipermfiles/piperdata.m',5,0)">line 5</a>)
+parameters = methods.piperinit(parameters);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('SDDebug', '/projectnb2/uqproj/StochasticDocking/Code/source/Debug/SDDebug.m', 59)" style="font-weight:bold">SDDebug</a> (<a href="matlab: opentoline('/projectnb2/uqproj/StochasticDocking/Code/source/Debug/SDDebug.m',59,0)">line 59</a>)
+[parameters, data] = methods.loadrealizations(methods,parameters);
+} 
+SDDebug
+Load realizations --------------------------------------- 
+
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('cd')" style="font-weight:bold">cd</a>
+Cannot CD to /projectnb2/uqproj/StochasticDocking/Code/source/piper/piper (Name is nonexistent or not a
+directory).
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('piperinitialization', '/projectnb2/uqproj/StochasticDocking/Code/source/pipermfiles/piperinitialization.m', 21)" style="font-weight:bold">piperinitialization</a> (<a href="matlab: opentoline('/projectnb2/uqproj/StochasticDocking/Code/source/pipermfiles/piperinitialization.m',21,0)">line 21</a>)
+cd piper
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('piperdata', '/projectnb2/uqproj/StochasticDocking/Code/source/pipermfiles/piperdata.m', 5)" style="font-weight:bold">piperdata</a> (<a href="matlab: opentoline('/projectnb2/uqproj/StochasticDocking/Code/source/pipermfiles/piperdata.m',5,0)">line 5</a>)
+parameters = methods.piperinit(parameters);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('SDDebug', '/projectnb2/uqproj/StochasticDocking/Code/source/Debug/SDDebug.m', 59)" style="font-weight:bold">SDDebug</a> (<a href="matlab: opentoline('/projectnb2/uqproj/StochasticDocking/Code/source/Debug/SDDebug.m',59,0)">line 59</a>)
+[parameters, data] = methods.loadrealizations(methods,parameters);
+} 
+SDDebug

@@ -1,4 +1,5 @@
 piper
+--np 1
 -v
 -c1.0
 -k4
@@ -16,7 +17,7 @@ atoms.0.0.6.prm.ms.3cap+0.5ace.Hr0rec
 rot70k.0.0.6.jm.prm
 -f
 coeffs.0.0.6.cs1.0.serverdemo_zero
-../../data/PDBApprox/prot_0729_approximation_nmin.pdb
+1aq7_a_1ppe_e_cmin_nmin.pdb
 1ppe_nmin.pdb
 multirec_trypsin_expand.pdb
 multilig.pdb
